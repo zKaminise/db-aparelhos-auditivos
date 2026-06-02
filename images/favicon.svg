@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <clipPath id="rounded">
+      <rect width="100" height="100" rx="22" ry="22"/>
+    </clipPath>
+  </defs>
+  <!-- Fundo branco com bordas arredondadas -->
+  <rect width="100" height="100" rx="22" ry="22" fill="#ffffff"/>
+  <!-- Ícone da logo centralizado com clip arredondado -->
+  <image
+    href="logo-icon.png"
+    x="8" y="8"
+    width="84" height="84"
+    clip-path="url(#rounded)"
+    preserveAspectRatio="xMidYMid meet"
+  />
+</svg>

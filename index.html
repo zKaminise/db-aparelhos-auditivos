@@ -9,6 +9,13 @@
   <meta property="og:description" content="Agende sua consulta na dB Aparelhos Auditivos em Belo Horizonte. Atendimento humanizado, avaliação auditiva, adaptação, teste assistido e aparelhos auditivos modernos." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="images/og-image.jpg" />
+  <!-- ══ Favicon / ícone da guia do navegador ══ -->
+  <link rel="icon" type="image/x-icon"  href="images/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32"  href="images/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16"  href="images/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png" />
+  <meta name="theme-color" content="#ffffff" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&family=Noto+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
@@ -149,7 +156,7 @@
         <span class="ring ring-3"></span>
         <!-- Produto -->
         <img
-          src="images/aparelho-2.jpg"
+          src="images/aparelho-2.png"
           alt="Aparelho auditivo moderno com case de carregamento"
           class="hero-product-img"
           loading="eager"
@@ -157,14 +164,14 @@
           onerror="this.closest('.hero-product-frame').classList.add('no-img')"
         />
         <!-- Selos flutuantes -->
-        <div class="hero-seal hero-seal-top">
+        <!--<div class="hero-seal hero-seal-top">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
           Tecnologia discreta
         </div>
         <div class="hero-seal hero-seal-bottom">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
           Modelos recarregáveis
-        </div>
+        </div>-->
       </div>
     </div>
   </div>
@@ -185,37 +192,114 @@
       <h2 id="dor-heading">Situações que muitas pessoas vivem sem perceber que podem ter ajuda</h2>
     </div>
 
-    <div class="dor-grid">
-      <div class="dor-card" data-animate="fade-up" data-delay="0">
-        <div class="dor-quote-mark" aria-hidden="true">"</div>
-        <p class="dor-phrase">Pode repetir? Não entendi bem o que você falou...</p>
-        <span class="dor-tag">Em conversas do dia a dia</span>
+    <!-- Acordeão horizontal — card CTA aberto por padrão, brancos fechados -->
+    <div class="dor-accordion" id="dor-accordion" data-animate="fade-up">
+
+      <!-- ── Card 1 ── -->
+      <div class="dor-ac-item" data-idx="0" role="article" aria-label="Em conversas do dia a dia">
+
+        <!-- Estado FECHADO -->
+        <div class="dor-ac-closed" aria-hidden="true">
+          <span class="dor-ac-num">01</span>
+          <div class="dor-ac-preview">
+            <h3 class="dor-ac-ctitle">Conversas</h3>
+            <p class="dor-ac-ctext">Pedir para repetir</p>
+          </div>
+        </div>
+
+        <!-- Estado ABERTO -->
+        <div class="dor-ac-inner">
+          <div class="dor-ac-top">
+            <div class="dor-ac-quote" aria-hidden="true">"</div>
+            <p class="dor-ac-phrase">Pode repetir? Não entendi bem o que você falou...</p>
+          </div>
+          <span class="dor-ac-tag">EM CONVERSAS DO DIA A DIA</span>
+        </div>
       </div>
-      <div class="dor-card" data-animate="fade-up" data-delay="80">
-        <div class="dor-quote-mark" aria-hidden="true">"</div>
-        <p class="dor-phrase">O volume da TV está alto demais para os outros, mas para mim é normal...</p>
-        <span class="dor-tag">Em casa, assistindo TV</span>
+
+      <!-- ── Card 2 ── -->
+      <div class="dor-ac-item" data-idx="1" role="article" aria-label="Em casa, assistindo TV">
+
+        <div class="dor-ac-closed" aria-hidden="true">
+          <span class="dor-ac-num">02</span>
+          <div class="dor-ac-preview">
+            <h3 class="dor-ac-ctitle">TV alta</h3>
+            <p class="dor-ac-ctext">Volume acima do normal</p>
+          </div>
+        </div>
+
+        <div class="dor-ac-inner">
+          <div class="dor-ac-top">
+            <div class="dor-ac-quote" aria-hidden="true">"</div>
+            <p class="dor-ac-phrase">O volume da TV está alto demais para os outros, mas para mim é normal...</p>
+          </div>
+          <span class="dor-ac-tag">EM CASA, ASSISTINDO TV</span>
+        </div>
       </div>
-      <div class="dor-card" data-animate="fade-up" data-delay="160">
-        <div class="dor-quote-mark" aria-hidden="true">"</div>
-        <p class="dor-phrase">Em lugares com muito barulho, perco completamente o fio da conversa...</p>
-        <span class="dor-tag">Em restaurantes e eventos</span>
+
+      <!-- ── Card 3 ── -->
+      <div class="dor-ac-item" data-idx="2" role="article" aria-label="Em restaurantes e eventos">
+
+        <div class="dor-ac-closed" aria-hidden="true">
+          <span class="dor-ac-num">03</span>
+          <div class="dor-ac-preview">
+            <h3 class="dor-ac-ctitle">Barulho</h3>
+            <p class="dor-ac-ctext">Difícil acompanhar</p>
+          </div>
+        </div>
+
+        <div class="dor-ac-inner">
+          <div class="dor-ac-top">
+            <div class="dor-ac-quote" aria-hidden="true">"</div>
+            <p class="dor-ac-phrase">Em lugares com muito barulho, perco completamente o fio da conversa...</p>
+          </div>
+          <span class="dor-ac-tag">EM RESTAURANTES E EVENTOS</span>
+        </div>
       </div>
-      <div class="dor-card" data-animate="fade-up" data-delay="240">
-        <div class="dor-quote-mark" aria-hidden="true">"</div>
-        <p class="dor-phrase">Às vezes prefiro não participar por não conseguir acompanhar...</p>
-        <span class="dor-tag">Em reuniões e encontros</span>
+
+      <!-- ── Card 4 ── -->
+      <div class="dor-ac-item" data-idx="3" role="article" aria-label="Em reuniões e encontros">
+
+        <div class="dor-ac-closed" aria-hidden="true">
+          <span class="dor-ac-num">04</span>
+          <div class="dor-ac-preview">
+            <h3 class="dor-ac-ctitle">Reuniões</h3>
+            <p class="dor-ac-ctext">Evitar participar</p>
+          </div>
+        </div>
+
+        <div class="dor-ac-inner">
+          <div class="dor-ac-top">
+            <div class="dor-ac-quote" aria-hidden="true">"</div>
+            <p class="dor-ac-phrase">Às vezes prefiro não participar por não conseguir acompanhar...</p>
+          </div>
+          <span class="dor-ac-tag">EM REUNIÕES E ENCONTROS</span>
+        </div>
       </div>
-      <div class="dor-card dor-card-cta" data-animate="fade-up" data-delay="320">
-        <p class="dor-cta-label">A dificuldade auditiva pode afetar a rotina, a segurança e a qualidade de vida. O primeiro passo é entender o que está acontecendo.</p>
-        <a href="https://wa.me/5531998580902?text=Ol%C3%A1%2C%20vim%20pelo%20Google%20e%20gostaria%20de%20conversar%20com%20a%20equipe."
-           class="btn btn-whatsapp js-whatsapp-cta"
-           data-event="whatsapp_click" data-cta-location="dor"
-           target="_blank" rel="noopener noreferrer">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Quero conversar com a equipe
-        </a>
+
+      <!-- ── Card CTA (preto) — aberto por padrão ── -->
+      <div class="dor-ac-item dor-ac-cta is-open" data-idx="cta" role="article" aria-label="Fale com a equipe">
+
+        <!-- Estado FECHADO do CTA -->
+        <div class="dor-cta-closed" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <span>Fale conosco</span>
+        </div>
+
+        <!-- Estado ABERTO do CTA -->
+        <div class="dor-cta-inner">
+          <p class="dor-cta-text">A dificuldade auditiva pode afetar a rotina, a segurança e a qualidade de vida. O primeiro passo é entender o que está acontecendo.</p>
+          <a href="https://wa.me/5531998580902?text=Ol%C3%A1%2C%20vim%20pelo%20Google%20e%20gostaria%20de%20conversar%20com%20a%20equipe."
+             class="dor-cta-btn js-whatsapp-cta"
+             data-event="whatsapp_click" data-cta-location="dor"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Quero conversar com a equipe pelo WhatsApp">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Quero conversar com a equipe
+          </a>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -404,7 +488,7 @@
           <div class="product-deco-ring" aria-hidden="true"></div>
           <img
             id="sticky-img"
-            src="images/aparelho-2.jpg"
+            src="images/aparelho-2.png"
             alt="Aparelho auditivo moderno recarregável"
             class="sticky-product-img"
             loading="lazy"
@@ -427,7 +511,7 @@
 
       <!-- Coluna dos steps (scroll) -->
       <div class="sticky-col-steps">
-        <div class="aparelho-step active" data-step="0" data-img="images/aparelho-2.jpg">
+        <div class="aparelho-step active" data-step="0" data-img="images/aparelho-2.png">
           <div class="step-label">01</div>
           <h3>Design discreto e moderno</h3>
           <p>Existem modelos pequenos, leves e discretos que se adaptam naturalmente ao cotidiano. A indicação do modelo mais adequado é feita após avaliação individual, considerando grau auditivo e preferência do paciente.</p>
@@ -438,7 +522,7 @@
           </div>
         </div>
 
-        <div class="aparelho-step" data-step="1" data-img="images/aparelho-3.jpg">
+        <div class="aparelho-step" data-step="1" data-img="images/aparelho-3.png">
           <div class="step-label">02</div>
           <h3>Modelos recarregáveis</h3>
           <p>Sem a necessidade de trocar pilhas com frequência. Os modelos recarregáveis oferecem praticidade no dia a dia, especialmente para quem tem dificuldade com acessórios pequenos.</p>
@@ -449,7 +533,7 @@
           </div>
         </div>
 
-        <div class="aparelho-step" data-step="2" data-img="images/aparelho-4.jpg">
+        <div class="aparelho-step" data-step="2" data-img="images/aparelho-4.png">
           <div class="step-label">03</div>
           <h3>Conectividade de áudio</h3>
           <p>Alguns modelos permitem streaming de áudio diretamente do celular ou TV para o aparelho auditivo, tornando a experiência mais natural e confortável.</p>
@@ -460,7 +544,7 @@
           </div>
         </div>
 
-        <div class="aparelho-step" data-step="3" data-img="images/aparelho-2.jpg">
+        <div class="aparelho-step" data-step="3" data-img="images/aparelho-5.png">
           <div class="step-label">04</div>
           <h3>Ajustes personalizados</h3>
           <p>Cada aparelho é regulado conforme a necessidade auditiva, a rotina e o ambiente de vida do paciente. Os ajustes são feitos com acompanhamento profissional.</p>
@@ -471,7 +555,7 @@
           </div>
         </div>
 
-        <div class="aparelho-step" data-step="4" data-img="images/aparelho-3.jpg">
+        <div class="aparelho-step" data-step="4" data-img="images/aparelho-6.png">
           <div class="step-label">05</div>
           <h3>Acompanhamento na adaptação</h3>
           <p>O processo não termina na compra. A dB acompanha retornos, regulagens e adaptação para garantir que o aparelho funcione bem na vida real do paciente.</p>
@@ -636,11 +720,11 @@
       <h2 id="dep-heading">Histórias de quem buscou mais segurança para ouvir melhor</h2>
     </div>
 
-    <!-- Nota de publicação (visível apenas em desenvolvimento) -->
+    <!-- Nota de publicação (visível apenas em desenvolvimento)
     <div class="dep-pub-note" role="note" aria-label="Nota de publicação">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       <strong>[Antes de publicar:]</strong> Substituir os depoimentos abaixo por avaliações reais autorizadas do Google.
-    </div>
+    </div>-->
 
     <div class="dep-grid" data-animate="fade-up">
       <!-- Placeholder 1 — substituir antes de publicar -->
@@ -707,7 +791,7 @@
 <!-- ════════════════════════════════════════
      FAMILIARES
 ════════════════════════════════════════ -->
-<section class="section section-familia bg-dark" aria-labelledby="familia-heading">
+<section class="section section-familia bg-dark" aria-labelledby="familia-heading" style="overflow:hidden">
   <div class="container">
     <div class="familia-inner" data-animate="fade-up">
       <div class="familia-content">
@@ -997,7 +1081,7 @@
       <!-- ⚠️ Preencher antes de publicar -->
       <p class="footer-rt">
         <strong>Responsável técnico:</strong> [Nome do profissional] — CRFa: [número]
-        <span class="rt-badge">[Preencher antes de publicar]</span>
+        <!--<span class="rt-badge">[Preencher antes de publicar]</span>-->
       </p>
       <p class="footer-copy">&copy; <span id="ano"></span> dB Aparelhos Auditivos. Todos os direitos reservados.</p>
     </div>

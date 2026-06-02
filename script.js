@@ -154,6 +154,34 @@ document.querySelectorAll('.js-whatsapp-cta').forEach(el => {
 });
 
 
+// ── Acordeão horizontal — seção de dor ───
+(function () {
+  const accordion = document.getElementById('dor-accordion');
+  if (!accordion) return;
+
+  const items    = Array.from(accordion.querySelectorAll('.dor-ac-item'));
+  const ctaItem  = accordion.querySelector('.dor-ac-cta');
+  const isMobile = () => window.innerWidth < 640;
+
+  function setActive(target) {
+    if (isMobile()) return; // no mobile não usa hover
+    items.forEach(item => item.classList.remove('is-open'));
+    if (target) target.classList.add('is-open');
+  }
+
+  // Hover nos cards brancos
+  items.forEach(item => {
+    if (item.classList.contains('dor-ac-cta')) return;
+    item.addEventListener('mouseenter', () => setActive(item));
+  });
+
+  // Hover no card CTA
+  ctaItem?.addEventListener('mouseenter', () => setActive(ctaItem));
+
+  // Ao sair do acordeão inteiro → CTA volta a abrir
+  accordion.addEventListener('mouseleave', () => setActive(ctaItem));
+})();
+
 // ── Hover sutil na imagem do hero ─────
 const heroImg = document.querySelector('.hero-product-img');
 if (heroImg) {
