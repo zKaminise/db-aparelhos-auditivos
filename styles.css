@@ -1939,3 +1939,691 @@ address { font-style: normal; }
     display: contents !important;
   }
 }
+
+/* ══════════════════════════════════════════
+   AJUSTE VISUAL FINAL — HERO MOBILE + CARDS APARELHOS MOBILE
+   Não mexe no sticky desktop e não altera JS.
+   ══════════════════════════════════════════ */
+
+/* HERO MOBILE — modelo: texto em cima + imagem grande embaixo */
+@media (max-width: 900px) {
+  .hero {
+    position: relative;
+    display: block !important;
+    min-height: 100svh;
+    padding-top: calc(var(--header-h) + 18px) !important;
+    padding-bottom: 0 !important;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 68% 70%, rgba(37, 211, 102, .10), transparent 28%),
+      linear-gradient(180deg, #ffffff 0%, #fbfaf8 52%, #f1efeb 100%) !important;
+  }
+
+  .hero::after,
+  .hero-bg-deco,
+  .hero-visual,
+  .hero-wave {
+    display: none !important;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    display: block !important;
+    min-height: calc(100svh - var(--header-h));
+    padding-top: 1.1rem !important;
+    padding-bottom: clamp(330px, 76vw, 430px) !important;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 5;
+    max-width: 100%;
+  }
+
+  .hero-badge {
+    display: none !important;
+  }
+
+  .hero h1 {
+    max-width: 100%;
+    font-size: clamp(1.72rem, 7.2vw, 2.45rem);
+    line-height: 1.08;
+    letter-spacing: -.045em;
+    margin-bottom: .95rem;
+  }
+
+  .hero-sub {
+    max-width: 100%;
+    font-size: .92rem;
+    line-height: 1.58;
+    margin-bottom: 1.15rem;
+  }
+
+  .hero-checklist {
+    gap: .42rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-checklist li {
+    font-size: .82rem;
+    line-height: 1.32;
+  }
+
+  .hero-checklist svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .hero-ctas {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: .65rem;
+    width: 100%;
+    margin-bottom: .75rem;
+  }
+
+  .hero-ctas .btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 52px;
+    border-radius: 14px;
+    font-size: .92rem;
+  }
+
+  .hero-microcopy {
+    position: relative;
+    z-index: 6;
+    font-size: .76rem;
+  }
+
+  .hero-bg-product {
+    display: block !important;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .hero-bg-product picture {
+    display: block;
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero-bg-product img {
+    position: absolute;
+    display: block;
+    width: min(136vw, 620px);
+    max-width: none;
+    height: auto;
+    left: 50%;
+    right: auto !important;
+    top: auto !important;
+    bottom: -22px;
+    transform: translateX(-39%) !important;
+    opacity: 1 !important;
+    object-fit: contain;
+    filter: drop-shadow(0 26px 42px rgba(0,0,0,.15));
+  }
+
+  .hero-bg-product::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background:
+      linear-gradient(
+        to bottom,
+        #ffffff 0%,
+        #ffffff 48%,
+        rgba(255,255,255,.92) 57%,
+        rgba(255,255,255,.42) 72%,
+        rgba(255,255,255,0) 100%
+      );
+  }
+
+  .hero-bg-product::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    width: 78%;
+    height: 30%;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(0,0,0,.12), transparent 66%);
+    filter: blur(12px);
+  }
+}
+
+/* MOBILE GRANDE */
+@media (max-width: 640px) {
+  .hero {
+    min-height: 100svh;
+    padding-top: calc(var(--header-h) + 12px) !important;
+  }
+
+  .hero-inner {
+    padding-top: .85rem !important;
+    padding-bottom: 310px !important;
+  }
+
+  .hero h1 {
+    font-size: 1.68rem;
+  }
+
+  .hero-sub {
+    font-size: .86rem;
+  }
+
+  .hero-checklist li {
+    font-size: .78rem;
+  }
+
+  .hero-bg-product img {
+    width: 145%;
+    bottom: -12px;
+    transform: translateX(-40%) !important;
+  }
+}
+
+/* IPHONE 14 / 15 PRO MAX E SIMILARES */
+@media (max-width: 430px) {
+  .hero-inner {
+    padding-bottom: 285px !important;
+  }
+
+  .hero h1 {
+    font-size: 1.55rem;
+    line-height: 1.1;
+  }
+
+  .hero-sub {
+    font-size: .82rem;
+    line-height: 1.55;
+  }
+
+  .hero-checklist {
+    margin-bottom: 1rem;
+  }
+
+  .hero-checklist li {
+    font-size: .74rem;
+  }
+
+  .hero-ctas .btn {
+    min-height: 50px;
+    font-size: .86rem;
+  }
+
+  .hero-microcopy {
+    font-size: .72rem;
+  }
+
+  .hero-bg-product img {
+    width: 154%;
+    bottom: -8px;
+    transform: translateX(-39%) !important;
+  }
+
+  .hero-bg-product::before {
+    background:
+      linear-gradient(
+        to bottom,
+        #ffffff 0%,
+        #ffffff 51%,
+        rgba(255,255,255,.92) 60%,
+        rgba(255,255,255,.34) 77%,
+        rgba(255,255,255,0) 100%
+      );
+  }
+}
+
+/* IPHONES MENORES */
+@media (max-width: 375px) {
+  .hero-inner {
+    padding-bottom: 250px !important;
+  }
+
+  .hero h1 {
+    font-size: 1.42rem;
+  }
+
+  .hero-sub {
+    font-size: .78rem;
+  }
+
+  .hero-checklist li {
+    font-size: .7rem;
+  }
+
+  .hero-bg-product img {
+    width: 158%;
+    bottom: -6px;
+    transform: translateX(-38%) !important;
+  }
+}
+
+
+/* ══════════════════════════════════════════
+   CARDS DE APARELHOS MOBILE — melhorar leitura
+   Mantém imagem, mas tira de cima do texto.
+   ══════════════════════════════════════════ */
+
+@media (max-width: 900px) {
+  .aparelho-step {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 390px !important;
+    padding: 1.35rem 1.15rem 185px !important;
+    background:
+      linear-gradient(135deg, #ffffff 0%, #fbfaf8 100%) !important;
+  }
+
+  .aparelho-step::before {
+    content: '';
+    position: absolute;
+    right: -26%;
+    bottom: -34%;
+    width: 280px;
+    height: 280px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(0,0,0,.06), transparent 66%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .aparelho-step::after {
+    content: '' !important;
+    display: block !important;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background:
+      linear-gradient(
+        to bottom,
+        #ffffff 0%,
+        #ffffff 48%,
+        rgba(255,255,255,.94) 60%,
+        rgba(255,255,255,.58) 76%,
+        rgba(255,255,255,.10) 100%
+      );
+  }
+
+  .aparelho-step > *:not(.step-product-mobile) {
+    position: relative;
+    z-index: 3;
+  }
+
+  .step-product-mobile {
+    display: block !important;
+    position: absolute;
+    z-index: 1;
+    width: min(88%, 360px);
+    height: auto;
+    right: -58px;
+    bottom: 2px;
+    opacity: .82;
+    object-fit: contain;
+    pointer-events: none;
+    filter: drop-shadow(0 24px 34px rgba(0,0,0,.12));
+  }
+}
+
+@media (max-width: 640px) {
+  .aparelho-step {
+    min-height: 355px !important;
+    padding: 1.25rem 1rem 165px !important;
+  }
+
+  .step-product-mobile {
+    width: 92%;
+    right: -64px;
+    bottom: -2px;
+    opacity: .78;
+  }
+}
+
+@media (max-width: 430px) {
+  .aparelho-step {
+    min-height: 342px !important;
+    padding-bottom: 155px !important;
+  }
+
+  .aparelho-step h3 {
+    font-size: 1.05rem;
+  }
+
+  .aparelho-step p {
+    font-size: .86rem;
+    line-height: 1.62;
+  }
+
+  .step-chips {
+    gap: .38rem;
+  }
+
+  .step-chips span {
+    font-size: .66rem;
+    padding: .26rem .62rem;
+    background: rgba(255,255,255,.86);
+    backdrop-filter: blur(4px);
+  }
+
+  .step-product-mobile {
+    width: 96%;
+    right: -72px;
+    bottom: -4px;
+    opacity: .76;
+  }
+}
+
+@media (max-width: 375px) {
+  .aparelho-step {
+    min-height: 330px !important;
+    padding-bottom: 145px !important;
+  }
+
+  .step-product-mobile {
+    width: 100%;
+    right: -76px;
+    bottom: -6px;
+    opacity: .74;
+  }
+}
+
+/* ══════════════════════════════════════════
+   AJUSTE FINO — HERO MOBILE + CARDS APARELHOS
+   Colar no final do styles.css
+   ══════════════════════════════════════════ */
+
+
+/* HERO MOBILE — diminuir imagem e mostrar melhor o produto inteiro */
+@media (max-width: 900px) {
+  .hero-inner {
+    padding-bottom: clamp(285px, 68vw, 380px) !important;
+  }
+
+  .hero-bg-product img {
+    width: min(118vw, 540px) !important;
+    bottom: 10px !important;
+    transform: translateX(-46%) !important;
+    opacity: .96 !important;
+  }
+
+  .hero-bg-product::before {
+    background:
+      linear-gradient(
+        to bottom,
+        #ffffff 0%,
+        #ffffff 50%,
+        rgba(255,255,255,.92) 60%,
+        rgba(255,255,255,.32) 76%,
+        rgba(255,255,255,0) 100%
+      ) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-inner {
+    padding-bottom: 270px !important;
+  }
+
+  .hero-bg-product img {
+    width: 122% !important;
+    bottom: 12px !important;
+    transform: translateX(-47%) !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .hero-inner {
+    padding-bottom: 255px !important;
+  }
+
+  .hero-bg-product img {
+    width: 126% !important;
+    bottom: 14px !important;
+    transform: translateX(-47%) !important;
+  }
+}
+
+@media (max-width: 375px) {
+  .hero-inner {
+    padding-bottom: 235px !important;
+  }
+
+  .hero-bg-product img {
+    width: 130% !important;
+    bottom: 10px !important;
+    transform: translateX(-47%) !important;
+  }
+}
+
+
+/* CARDS APARELHOS MOBILE — imagem mais visível sem atrapalhar texto */
+@media (max-width: 900px) {
+  .aparelho-step {
+    min-height: 390px !important;
+    padding: 1.35rem 1.15rem 175px !important;
+    background: #ffffff !important;
+  }
+
+  .aparelho-step::after {
+    content: '' !important;
+    display: block !important;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background:
+      linear-gradient(
+        to bottom,
+        #ffffff 0%,
+        #ffffff 52%,
+        rgba(255,255,255,.84) 64%,
+        rgba(255,255,255,.34) 82%,
+        rgba(255,255,255,0) 100%
+      ) !important;
+  }
+
+  .step-product-mobile {
+    width: min(72%, 300px) !important;
+    right: -18px !important;
+    bottom: 12px !important;
+    opacity: .95 !important;
+    filter: drop-shadow(0 22px 30px rgba(0,0,0,.13)) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .aparelho-step {
+    min-height: 360px !important;
+    padding: 1.25rem 1rem 155px !important;
+  }
+
+  .step-product-mobile {
+    width: 74% !important;
+    right: -20px !important;
+    bottom: 12px !important;
+    opacity: .95 !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .aparelho-step {
+    min-height: 345px !important;
+    padding-bottom: 145px !important;
+  }
+
+  .step-product-mobile {
+    width: 76% !important;
+    right: -22px !important;
+    bottom: 10px !important;
+    opacity: .95 !important;
+  }
+
+  .aparelho-step::after {
+    background:
+      linear-gradient(
+        to bottom,
+        #ffffff 0%,
+        #ffffff 54%,
+        rgba(255,255,255,.84) 66%,
+        rgba(255,255,255,.28) 84%,
+        rgba(255,255,255,0) 100%
+      ) !important;
+  }
+}
+
+@media (max-width: 375px) {
+  .aparelho-step {
+    min-height: 330px !important;
+    padding-bottom: 135px !important;
+  }
+
+  .step-product-mobile {
+    width: 78% !important;
+    right: -24px !important;
+    bottom: 8px !important;
+  }
+}
+
+/* ══════════════════════════════════════════
+   AJUSTE DEFINITIVO — CARDS APARELHOS MOBILE
+   Texto em cima + imagem visível embaixo
+   Não mexe no sticky desktop
+   ══════════════════════════════════════════ */
+
+@media (max-width: 900px) {
+  .aparelho-step {
+    position: relative !important;
+    isolation: isolate;
+    overflow: hidden !important;
+
+    min-height: 430px !important;
+    padding: 1.35rem 1.15rem 210px !important;
+
+    border-radius: 24px !important;
+    background: #ffffff !important;
+    border: 1px solid rgba(0,0,0,.08) !important;
+    box-shadow: 0 10px 28px rgba(0,0,0,.045) !important;
+  }
+
+  .aparelho-step::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+
+    width: 78%;
+    height: 170px;
+    border-radius: 999px;
+
+    background: radial-gradient(circle, rgba(0,0,0,.08), transparent 68%);
+    filter: blur(10px);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .aparelho-step::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  .aparelho-step > *:not(.step-product-mobile) {
+    position: relative;
+    z-index: 3;
+  }
+
+  .step-product-mobile {
+    display: block !important;
+    position: absolute !important;
+
+    z-index: 1;
+    width: auto !important;
+    max-width: none !important;
+    height: 185px !important;
+
+    left: 50% !important;
+    right: auto !important;
+    bottom: 18px !important;
+
+    transform: translateX(-50%) !important;
+    opacity: 1 !important;
+
+    object-fit: contain !important;
+    object-position: center bottom !important;
+    pointer-events: none;
+
+    filter: drop-shadow(0 22px 30px rgba(0,0,0,.16)) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .aparelho-step {
+    min-height: 410px !important;
+    padding: 1.25rem 1rem 200px !important;
+  }
+
+  .step-product-mobile {
+    height: 178px !important;
+    bottom: 18px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .aparelho-step {
+    min-height: 395px !important;
+    padding: 1.2rem .95rem 188px !important;
+  }
+
+  .aparelho-step h3 {
+    font-size: 1.05rem;
+    margin-bottom: .55rem;
+  }
+
+  .aparelho-step p {
+    font-size: .86rem;
+    line-height: 1.58;
+  }
+
+  .step-chips {
+    position: relative;
+    z-index: 4;
+    gap: .38rem;
+    margin-top: .8rem;
+  }
+
+  .step-chips span {
+    font-size: .65rem;
+    padding: .26rem .58rem;
+    background: rgba(255,255,255,.92);
+    border-color: rgba(0,0,0,.18);
+    backdrop-filter: blur(5px);
+  }
+
+  .step-product-mobile {
+    height: 172px !important;
+    bottom: 16px !important;
+  }
+}
+
+@media (max-width: 375px) {
+  .aparelho-step {
+    min-height: 375px !important;
+    padding-bottom: 174px !important;
+  }
+
+  .step-product-mobile {
+    height: 158px !important;
+    bottom: 14px !important;
+  }
+}
