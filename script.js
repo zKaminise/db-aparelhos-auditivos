@@ -92,41 +92,165 @@ document.querySelectorAll('[data-animate]').forEach(el => {
 });
 
 
-// ── Sticky Scroll — seção de Aparelhos ──
-const aparelhoSteps  = document.querySelectorAll('.aparelho-step');
-const stickyImg      = document.getElementById('sticky-img');
+// ── Sticky Scroll — seção de Aparelhos + sticky manual desktop ──
+// Esta versão não depende mais do CSS position: sticky, porque o sticky nativo
+// pode falhar quando algum ancestral recebe overflow/transform. No desktop,
+// ela controla o estado: normal -> fixed -> absolute final.
+const aparelhoSteps = Array.from(document.querySelectorAll('.aparelho-step'));
+const stickyImg = document.getElementById('sticky-img');
+const desktopQuery = window.matchMedia('(min-width: 901px)');
 
-if (aparelhoSteps.length && stickyImg) {
-  const changeImage = (newSrc) => {
-    if (!newSrc || stickyImg.src.endsWith(newSrc.replace(/^.*\//, ''))) return;
-    stickyImg.style.opacity = '0';
-    stickyImg.style.transform = 'scale(0.97)';
-    setTimeout(() => {
-      stickyImg.src = newSrc;
-      stickyImg.style.opacity = '1';
-      stickyImg.style.transform = 'scale(1)';
-    }, 220);
-  };
+function normalizeSrc(src) {
+  return (src || '').split('/').pop();
+}
 
-  const stepObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        // Desativa todos
-        aparelhoSteps.forEach(s => s.classList.remove('active'));
-        // Ativa o atual
-        entry.target.classList.add('active');
-        // Troca imagem
-        const newImg = entry.target.dataset.img;
-        if (newImg) changeImage(newImg);
-      }
-    });
-  }, {
-    rootMargin: '-35% 0px -35% 0px',
-    threshold: 0
+function updateAparelhoImage() {
+  if (!aparelhoSteps.length || !stickyImg) return;
+
+  let bestStep = null;
+  let bestDistance = Number.POSITIVE_INFINITY;
+  const referenceLine = window.innerHeight * 0.52;
+
+  aparelhoSteps.forEach((step) => {
+    const rect = step.getBoundingClientRect();
+    if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+
+    const stepMiddle = rect.top + rect.height / 2;
+    const distance = Math.abs(stepMiddle - referenceLine);
+
+    if (distance < bestDistance) {
+      bestDistance = distance;
+      bestStep = step;
+    }
   });
 
-  aparelhoSteps.forEach(step => stepObserver.observe(step));
+  if (!bestStep) {
+    bestStep = aparelhoSteps.find((step) => step.getBoundingClientRect().bottom > 0) || aparelhoSteps[aparelhoSteps.length - 1];
+  }
+
+  aparelhoSteps.forEach((item) => item.classList.toggle('active', item === bestStep));
+
+  const newImg = bestStep?.getAttribute('data-img');
+  const currentImg = stickyImg.getAttribute('src') || '';
+
+  if (desktopQuery.matches && newImg && normalizeSrc(currentImg) !== normalizeSrc(newImg)) {
+    stickyImg.style.opacity = '0';
+    stickyImg.style.transform = 'translateY(8px) scale(.98)';
+
+    window.setTimeout(() => {
+      stickyImg.setAttribute('src', newImg);
+      stickyImg.style.opacity = '1';
+      stickyImg.style.transform = 'translateY(0) scale(1)';
+    }, 150);
+  }
 }
+
+function setupManualSticky() {
+  // Slot da imagem da seção Aparelhos: já existe no HTML.
+  const productWrap = document.querySelector('.sticky-product-wrap');
+  const productSlot = document.querySelector('.sticky-col-image');
+  const productBoundary = document.querySelector('.section-aparelhos .sticky-layout');
+
+  const items = [
+    {
+      el: productWrap,
+      slot: productSlot,
+      boundary: productBoundary,
+      top: () => getHeaderHeight() + 32
+    }
+  ].filter(item => item.el && item.slot && item.boundary);
+
+  function getHeaderHeight() {
+    const raw = getComputedStyle(document.documentElement).getPropertyValue('--header-h') || '68';
+    return parseInt(raw, 10) || 68;
+  }
+
+  function resetItem(item) {
+    item.el.classList.remove('manual-sticky-fixed', 'manual-sticky-ended');
+    item.el.classList.add('manual-sticky-normal');
+    item.el.style.position = '';
+    item.el.style.top = '';
+    item.el.style.left = '';
+    item.el.style.width = '';
+    item.el.style.zIndex = '';
+    item.slot.style.minHeight = '';
+    item.slot.style.position = '';
+  }
+
+  function applyItem(item) {
+    if (!desktopQuery.matches) {
+      resetItem(item);
+      return;
+    }
+
+    item.el.classList.remove('manual-sticky-normal');
+
+    item.slot.style.position = 'relative';
+    item.slot.style.minHeight = `${item.el.offsetHeight}px`;
+
+    const top = item.top();
+    const slotRect = item.slot.getBoundingClientRect();
+    const boundaryRect = item.boundary.getBoundingClientRect();
+    const elHeight = item.el.offsetHeight;
+    const slotWidth = item.slot.getBoundingClientRect().width;
+
+    const shouldStart = boundaryRect.top <= top;
+    const shouldEnd = boundaryRect.bottom <= top + elHeight;
+
+    if (!shouldStart) {
+      item.el.classList.remove('manual-sticky-fixed', 'manual-sticky-ended');
+      item.el.classList.add('manual-sticky-normal');
+      item.el.style.position = '';
+      item.el.style.top = '';
+      item.el.style.left = '';
+      item.el.style.width = '';
+      item.el.style.zIndex = '';
+      return;
+    }
+
+    if (shouldEnd) {
+      const endTop = Math.max(0, boundaryRect.bottom - slotRect.top - elHeight);
+      item.el.classList.remove('manual-sticky-fixed', 'manual-sticky-normal');
+      item.el.classList.add('manual-sticky-ended');
+      item.el.style.position = 'absolute';
+      item.el.style.top = `${endTop}px`;
+      item.el.style.left = '0px';
+      item.el.style.width = `${slotWidth}px`;
+      item.el.style.zIndex = '5';
+      return;
+    }
+
+    item.el.classList.remove('manual-sticky-ended', 'manual-sticky-normal');
+    item.el.classList.add('manual-sticky-fixed');
+    item.el.style.position = 'fixed';
+    item.el.style.top = `${top}px`;
+    item.el.style.left = `${slotRect.left}px`;
+    item.el.style.width = `${slotWidth}px`;
+    item.el.style.zIndex = '5';
+  }
+
+  let ticking = false;
+  function update() {
+    ticking = false;
+    updateAparelhoImage();
+    items.forEach(applyItem);
+  }
+
+  function requestUpdate() {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(update);
+  }
+
+  window.addEventListener('scroll', requestUpdate, { passive: true });
+  window.addEventListener('resize', requestUpdate);
+  desktopQuery.addEventListener?.('change', requestUpdate);
+  window.addEventListener('load', requestUpdate);
+
+  requestUpdate();
+}
+
+setupManualSticky();
 
 
 // ── Rastreamento WhatsApp (GA4 / GTM) ─

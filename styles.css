@@ -282,7 +282,18 @@ address { font-style: normal; }
   display: flex; flex-direction: column; justify-content: center;
 }
 
-/* Fundo da direita (off-white) */
+/* ── hero-bg-product: OCULTO no desktop (hero-visual já exibe o produto) ── */
+/* No mobile é ativado e vira o visual principal                              */
+.hero-bg-product {
+  display: none; /* desktop: oculto — mobile: ativado via media query */
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Painel off-white (desktop) — fundo da coluna direita */
 .hero::after {
   content: '';
   position: absolute; top: 0; right: 0;
@@ -808,11 +819,38 @@ address { font-style: normal; }
 
 .aparelhos-cta-wrap { padding-top: 1rem; }
 
+/* ── Aparelhos: card visual no mobile (imagem por CSS var) ── */
+/* Aplicado via @media abaixo; aqui definimos apenas a variável padrão */
+.aparelho-step { --step-img: none; }
+
+/* Imagem mobile dos steps: oculta no desktop */
+.step-product-mobile { display: none; }
+
 
 /* ══════════════════════════════════════════
    TESTE ASSISTIDO
    ══════════════════════════════════════════ */
-.section-teste { overflow: hidden; }
+.section-teste {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+/* Desktop: detalhe visual discreto */
+.section-teste::before {
+  content: '';
+  position: absolute;
+  right: -80px;
+  bottom: -80px;
+  width: min(420px, 46vw);
+  height: 320px;
+  background: url('images/aparelho-2-clean-shadow.png') no-repeat right bottom / contain;
+  opacity: .34;
+  z-index: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 24px 44px rgba(0,0,0,.10));
+}
+.section-teste > * { position: relative; z-index: 1; }
+.section-teste .teste-inner { position: relative; z-index: 1; }
 .teste-inner {
   max-width: 720px; margin: 0 auto; text-align: center;
 }
@@ -950,8 +988,27 @@ address { font-style: normal; }
 /* ══════════════════════════════════════════
    FAMILIARES
    ══════════════════════════════════════════ */
-.section-familia { overflow: hidden; } /* SVG decorativo não vaza */
+.section-familia {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+/* Desktop: detalhe muito sutil (fundo preto) */
+.section-familia::after {
+  content: '';
+  position: absolute;
+  right: -10%;
+  bottom: -14%;
+  width: min(44vw, 440px);
+  height: 380px;
+  background: url('images/hero-product-premium-mobile.png') no-repeat right bottom / contain;
+  opacity: .18;
+  z-index: 0;
+  pointer-events: none;
+  filter: invert(1) brightness(2.2) saturate(.6);
+}
 .familia-inner {
+  position: relative; z-index: 1;
   display: grid; grid-template-columns: 1fr auto;
   gap: 4rem; align-items: center;
 }
@@ -1046,13 +1103,30 @@ address { font-style: normal; }
    CTA FINAL
    ══════════════════════════════════════════ */
 .section-cta-final {
-  background: var(--ink); position: relative; overflow: hidden;
+  background: var(--ink);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.section-cta-final::before {
+  content: '';
+  position: absolute;
+  left: -8%;
+  bottom: -20%;
+  width: min(36vw, 380px);
+  height: 380px;
+  background: url('images/aparelho-2.png') no-repeat left bottom / contain;
+  opacity: .15;
+  z-index: 0;
+  pointer-events: none;
+  filter: invert(1) brightness(2);
 }
 .cta-final-bg {
   position: absolute; inset: 0; pointer-events: none;
 }
 .cta-final-bg svg { width: 100%; height: 100%; }
 .cta-final-inner {
+  position: relative; z-index: 1;
   text-align: center; max-width: 640px; margin: 0 auto;
   padding: var(--section-py) 0;
   position: relative; z-index: 1;
@@ -1174,6 +1248,56 @@ address { font-style: normal; }
   .hero::after        { display: none; }
   .hero-bg-deco       { display: none; }
   .hero-visual        { display: none; }
+
+  /* MOBILE/TABLET: hero-bg-product ativado como visual principal */
+  .hero {
+    min-height: auto;
+    padding-top: calc(var(--header-h) + 34px);
+    padding-bottom: 0;
+    background: linear-gradient(180deg, #ffffff 0%, #fbfaf8 100%);
+  }
+  .hero-inner {
+    grid-template-columns: 1fr;
+    padding-bottom: clamp(235px, 62vw, 340px);
+  }
+  .hero-bg-product {
+    display: block !important; /* ativar no mobile */
+  }
+  .hero-bg-product picture,
+  .hero-bg-product img {
+    display: block;
+  }
+  .hero-bg-product img {
+    position: absolute;
+    width: min(118vw, 560px);
+    max-width: none;
+    height: auto;
+    right: -30%;
+    bottom: 4px;
+    top: auto;
+    transform: none;
+    opacity: .95;
+    object-fit: contain;
+    filter: drop-shadow(0 26px 42px rgba(0,0,0,.12));
+  }
+  .hero-bg-product::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(
+      to bottom,
+      #ffffff 0%,
+      #ffffff 54%,
+      rgba(255,255,255,.82) 66%,
+      rgba(255,255,255,.20) 100%
+    );
+    pointer-events: none;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 3;
+  }
   .hero-ctas          { flex-wrap: wrap; gap: .75rem; }
   .hero h1            { max-width: 100%; }
   .hero-sub           { max-width: 100%; }
@@ -1187,10 +1311,59 @@ address { font-style: normal; }
   .servicos-featured { grid-template-columns: repeat(2, 1fr); }
   .servicos-list     { grid-template-columns: repeat(2, 1fr); }
 
-  .sticky-layout             { grid-template-columns: 1fr; }
-  .sticky-col-image          { display: none; }
-  .aparelho-step             { opacity: 1 !important; min-height: auto; padding: 1.5rem 0 2rem; }
-  .aparelho-step:first-child { padding-top: 0; }
+  .sticky-layout    { grid-template-columns: 1fr; }
+  .sticky-col-image { display: none !important; }
+
+  /* Steps viram cards visuais com img real */
+  .sticky-col-steps { gap: 1rem; padding: 0; }
+
+  .aparelho-step {
+    position: relative;
+    overflow: hidden;
+    opacity: 1 !important;
+    min-height: 360px;
+    padding: 1.35rem 1.15rem 190px !important;
+    border: 1px solid rgba(0,0,0,.08) !important;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #ffffff 0%, #fbfaf8 100%);
+    box-shadow: 0 14px 34px rgba(0,0,0,.055);
+    margin-bottom: 0;
+  }
+  /* Halo de sombra decorativo no canto */
+  .aparelho-step::before {
+    content: '';
+    position: absolute;
+    right: -20%;
+    bottom: -30%;
+    width: 260px;
+    height: 260px;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(0,0,0,.055), transparent 66%);
+    z-index: 0;
+    pointer-events: none;
+  }
+  /* Remover overlay anterior */
+  .aparelho-step::after { display: none !important; }
+
+  /* Todo conteúdo acima do halo */
+  .aparelho-step > *:not(.step-product-mobile) {
+    position: relative;
+    z-index: 2;
+  }
+  /* Imagem real dentro do card */
+  .step-product-mobile {
+    display: block !important;
+    position: absolute;
+    z-index: 1;
+    width: min(82%, 330px);
+    height: auto;
+    right: -34px;
+    bottom: 8px;
+    opacity: .96;
+    object-fit: contain;
+    pointer-events: none;
+    filter: drop-shadow(0 24px 34px rgba(0,0,0,.13));
+  }
 
   .dif-layout     { grid-template-columns: 1fr; gap: 2rem; }
   .dif-hero-block { position: relative !important; top: auto !important; overflow: hidden; }
@@ -1250,6 +1423,14 @@ address { font-style: normal; }
   .hero-badge        { font-size: .72rem; }
   .hero-checklist li { font-size: .9rem; }
 
+  .hero-inner { padding-bottom: 265px; }
+  .hero-bg-product img {
+    width: 135%;
+    right: -42%;
+    bottom: 12px;
+    opacity: .96;
+  }
+
   .dor-accordion                     { flex-direction: column; height: auto; gap: 10px; }
   .dor-ac-item, .dor-ac-item.is-open {
     flex: none !important; width: 100%;
@@ -1277,7 +1458,9 @@ address { font-style: normal; }
   .servicos-featured { grid-template-columns: 1fr; }
   .servicos-list     { grid-template-columns: 1fr; }
 
-  .aparelho-step { padding: 1.25rem 0 1.5rem; }
+  /* Step padding reset — card style é definido no 900px */
+  .aparelho-step { padding: 1.35rem 1.15rem 170px !important; min-height: 320px; }
+  .step-product-mobile { width: 88%; right: -48px; }
   .step-chips    { flex-wrap: wrap; }
 
   .dif-grid { grid-template-columns: 1fr; }
@@ -1285,7 +1468,39 @@ address { font-style: normal; }
 
   .teste-list li { font-size: .9rem; }
 
+  /* Teste Assistido: imagem bem visível no mobile */
+  .section-teste {
+    padding-bottom: calc(var(--section-py) + 150px);
+  }
+  .section-teste::before {
+    width: 118%;
+    height: 300px;
+    right: -48%;
+    bottom: -26px;
+    opacity: .58;
+  }
+
   .familia-content h2 { font-size: 1.45rem; }
+
+  /* Família: decorativo no mobile (usa radial + imagem premium) */
+  .section-familia {
+    padding-bottom: calc(var(--section-py) + 170px);
+  }
+  .section-familia::after {
+    content: '';
+    position: absolute;
+    right: -38%;
+    bottom: 12px;
+    width: 120%;
+    height: 260px;
+    background:
+      radial-gradient(circle at center, rgba(255,255,255,.10), transparent 68%),
+      url('images/hero-product-premium-mobile.png') no-repeat right bottom / contain;
+    opacity: .52;
+    filter: invert(1) brightness(2) saturate(.5);
+    z-index: 0;
+    pointer-events: none;
+  }
 
   .dep-grid { grid-template-columns: 1fr; }
 
@@ -1375,6 +1590,26 @@ address { font-style: normal; }
   .site-footer { padding-bottom: 80px; }
 }
 
+/* 430px */
+@media (max-width: 430px) {
+  .hero-inner { padding-bottom: 250px; }
+  .hero-bg-product img {
+    width: 142%;
+    right: -48%;
+    bottom: 8px;
+  }
+}
+
+/* 375px */
+@media (max-width: 375px) {
+  .hero-inner { padding-bottom: 225px; }
+  .hero-bg-product img {
+    width: 146%;
+    right: -52%;
+    bottom: 2px;
+  }
+}
+
 /* 480px — mobile médio */
 @media (max-width: 480px) {
   :root      { --section-py: 40px; }
@@ -1386,7 +1621,14 @@ address { font-style: normal; }
 
   .section-header { margin-bottom: 2rem; }
 
-  .hero-badge        { display: none; }
+  .hero-badge { display: none; }
+  .hero-inner { padding-bottom: 250px; }
+  .hero-bg-product img {
+    width: 142%;
+    right: -48%;
+    bottom: 8px;
+    opacity: .96;
+  }
   .hero-sub          { font-size: .92rem; }
   .hero-checklist li { font-size: .88rem; gap: .5rem; }
   .btn-hero-primary  { padding: .9rem 1.4rem; font-size: .95rem; }
@@ -1416,6 +1658,19 @@ address { font-style: normal; }
 
   .footer-col h3 { margin-bottom: .65rem; }
   .site-footer   { padding-top: 2.5rem; }
+}
+
+/* Steps aparelhos 375px */
+@media (max-width: 375px) {
+  .aparelho-step {
+    min-height: 320px;
+    padding-bottom: 155px !important;
+  }
+  .step-product-mobile {
+    width: 92%;
+    right: -54px;
+    bottom: 4px;
+  }
 }
 
 /* 375px — mobile pequeno (iPhone SE) */
@@ -1454,4 +1709,233 @@ address { font-style: normal; }
   .hero-badge-dot { animation: none; }
   .dor-ac-inner, .dor-ac-closed,
   .dor-cta-inner, .dor-cta-closed { transition: none !important; }
+}
+
+
+/* ══════════════════════════════════════════
+   HOTFIX — restaurar sticky desktop sem perder mobile visual
+   Motivo: as imagens/cards novos são apenas para mobile. No desktop, a lógica
+   antiga precisa voltar: coluna esquerda sticky + cards rolando na direita.
+   ══════════════════════════════════════════ */
+@media (min-width: 901px) {
+  /* A seção de aparelhos não pode virar scroll-container, senão o sticky para. */
+  .section-aparelhos,
+  .section-aparelhos .container,
+  .section-aparelhos .sticky-layout,
+  .section-aparelhos .sticky-col-image,
+  .section-aparelhos .sticky-col-steps {
+    overflow: visible !important;
+  }
+
+  .section-aparelhos {
+    position: relative;
+  }
+
+  .sticky-layout {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    gap: 5rem !important;
+    align-items: start !important;
+  }
+
+  .sticky-col-image {
+    display: block !important;
+    position: sticky !important;
+    top: calc(var(--header-h) + 2rem) !important;
+    align-self: start !important;
+    height: max-content !important;
+    z-index: 2;
+  }
+
+  .sticky-product-wrap {
+    position: relative;
+    overflow: visible !important;
+  }
+
+  .sticky-col-steps {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    padding: 2rem 0 !important;
+  }
+
+  .aparelho-step {
+    position: relative !important;
+    overflow: visible !important;
+    min-height: auto !important;
+    margin-bottom: 0 !important;
+    padding: 2.5rem 0 3rem !important;
+    border: 0 !important;
+    border-top: 1px solid var(--border) !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    opacity: .35;
+    transition: opacity .4s ease;
+  }
+
+  .aparelho-step:first-child {
+    border-top: none !important;
+    padding-top: 0 !important;
+  }
+
+  .aparelho-step.active {
+    opacity: 1 !important;
+  }
+
+  .aparelho-step::before,
+  .aparelho-step::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  .step-product-mobile {
+    display: none !important;
+  }
+
+  /* A seção de diferenciais também precisa preservar sticky no desktop. */
+  .dif-layout {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    gap: 4rem !important;
+    align-items: start !important;
+    overflow: visible !important;
+  }
+
+  .dif-hero-block {
+    position: sticky !important;
+    top: calc(var(--header-h) + 1.5rem) !important;
+    align-self: start !important;
+    height: max-content !important;
+    overflow: clip;
+  }
+
+  /* Evita que o transform da animação de entrada atrapalhe o sticky do card preto. */
+  .dif-hero-block[data-animate] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+
+/* ══════════════════════════════════════════
+   HOTFIX FINAL — sticky desktop por JS
+   Motivo: em alguns navegadores o position: sticky parou de acompanhar
+   por causa de pais/overflows/transform. Então no desktop o script controla
+   o estado: normal -> fixed -> absolute final.
+   Não altera mobile.
+   ══════════════════════════════════════════ */
+@media (min-width: 901px) {
+  html,
+  body {
+    overflow-x: clip;
+  }
+
+  .section-aparelhos,
+  .section-aparelhos .container,
+  .section-aparelhos .sticky-layout,
+  .section-aparelhos .sticky-col-image,
+  .section-aparelhos .sticky-col-steps,
+  .dif-layout,
+  .manual-sticky-slot,
+  .dif-sticky-slot {
+    overflow: visible !important;
+  }
+
+  .section-aparelhos .sticky-layout,
+  .dif-layout {
+    position: relative !important;
+    align-items: start !important;
+  }
+
+  .sticky-col-image,
+  .manual-sticky-slot,
+  .dif-sticky-slot {
+    position: relative !important;
+    align-self: start !important;
+    z-index: 2;
+  }
+
+  /* Desativa o sticky nativo. O JS assume o controle no desktop. */
+  .sticky-col-image,
+  .dif-hero-block {
+    position: relative !important;
+    top: auto !important;
+  }
+
+  .sticky-product-wrap,
+  .dif-hero-block {
+    will-change: auto;
+  }
+
+  .sticky-product-wrap.manual-sticky-fixed,
+  .dif-hero-block.manual-sticky-fixed {
+    position: fixed !important;
+    z-index: 5 !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+
+  .sticky-product-wrap.manual-sticky-ended,
+  .dif-hero-block.manual-sticky-ended {
+    position: absolute !important;
+    z-index: 5 !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+
+  .sticky-product-wrap.manual-sticky-normal,
+  .dif-hero-block.manual-sticky-normal {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: auto !important;
+    transform: none !important;
+  }
+
+  .dif-hero-block[data-animate] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ══════════════════════════════════════════
+   FIX — Diferenciais sticky nativo no desktop
+   Mantém o JS manual apenas para a seção Aparelhos.
+   O card preto não deve ser controlado por JS.
+   ══════════════════════════════════════════ */
+@media (min-width: 901px) {
+  .dif-layout {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    gap: 4rem !important;
+    align-items: start !important;
+    position: relative !important;
+    overflow: visible !important;
+  }
+
+  .dif-hero-block {
+    position: sticky !important;
+    top: calc(var(--header-h) + 1.5rem) !important;
+    align-self: start !important;
+    height: max-content !important;
+    overflow: clip !important;
+    transform: none !important;
+    opacity: 1 !important;
+    z-index: 2;
+  }
+
+  .dif-hero-block.manual-sticky-fixed,
+  .dif-hero-block.manual-sticky-ended,
+  .dif-hero-block.manual-sticky-normal {
+    position: sticky !important;
+    top: calc(var(--header-h) + 1.5rem) !important;
+    left: auto !important;
+    width: auto !important;
+    transform: none !important;
+  }
+
+  .dif-sticky-slot {
+    display: contents !important;
+  }
 }

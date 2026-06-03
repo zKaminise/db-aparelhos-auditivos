@@ -81,6 +81,14 @@
      HERO
 ════════════════════════════════════════ -->
 <section class="hero" aria-labelledby="hero-heading">
+  <!-- Layer de background mobile: visível apenas no mobile via CSS -->
+  <div class="hero-bg-product" aria-hidden="true">
+    <picture>
+      <source media="(max-width: 900px)" srcset="images/hero-product-premium-mobile.png" />
+      <img src="images/hero-product-premium-desktop.png" alt="" loading="eager" />
+    </picture>
+  </div>
+
   <!-- Decoração de fundo: ondas sonoras -->
   <div class="hero-bg-deco" aria-hidden="true">
     <svg class="hero-bg-waves" viewBox="0 0 900 600" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
@@ -108,10 +116,6 @@
       </p>
 
       <ul class="hero-checklist" aria-label="Diferenciais">
-        <li>
-          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#111"/><polyline points="6,10 9,13 14,7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Atendimento presencial, remoto e domiciliar
-        </li>
         <li>
           <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#111"/><polyline points="6,10 9,13 14,7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Aparelhos discretos, recarregáveis e com conectividade
@@ -511,7 +515,7 @@
 
       <!-- Coluna dos steps (scroll) -->
       <div class="sticky-col-steps">
-        <div class="aparelho-step active" data-step="0" data-img="images/aparelho-2.png">
+        <div class="aparelho-step active" data-step="0" data-img="images/aparelho-2.png" style="--step-img: url('images/aparelho-2.png')">
           <div class="step-label">01</div>
           <h3>Design discreto e moderno</h3>
           <p>Existem modelos pequenos, leves e discretos que se adaptam naturalmente ao cotidiano. A indicação do modelo mais adequado é feita após avaliação individual, considerando grau auditivo e preferência do paciente.</p>
@@ -520,9 +524,10 @@
             <span>Intracanal</span>
             <span>Mini RIC</span>
           </div>
+          <img class="step-product-mobile" src="images/aparelho-2.png" alt="" loading="lazy" aria-hidden="true" />
         </div>
 
-        <div class="aparelho-step" data-step="1" data-img="images/aparelho-3.png">
+        <div class="aparelho-step" data-step="1" data-img="images/aparelho-3.png" style="--step-img: url('images/aparelho-3.png')">
           <div class="step-label">02</div>
           <h3>Modelos recarregáveis</h3>
           <p>Sem a necessidade de trocar pilhas com frequência. Os modelos recarregáveis oferecem praticidade no dia a dia, especialmente para quem tem dificuldade com acessórios pequenos.</p>
@@ -531,9 +536,10 @@
             <span>Case de carregamento</span>
             <span>Praticidade</span>
           </div>
+          <img class="step-product-mobile" src="images/aparelho-3.png" alt="" loading="lazy" aria-hidden="true" />
         </div>
 
-        <div class="aparelho-step" data-step="2" data-img="images/aparelho-4.png">
+        <div class="aparelho-step" data-step="2" data-img="images/aparelho-4.png" style="--step-img: url('images/aparelho-4.png')">
           <div class="step-label">03</div>
           <h3>Conectividade de áudio</h3>
           <p>Alguns modelos permitem streaming de áudio diretamente do celular ou TV para o aparelho auditivo, tornando a experiência mais natural e confortável.</p>
@@ -542,9 +548,10 @@
             <span>App de controle</span>
             <span>Bluetooth</span>
           </div>
+          <img class="step-product-mobile" src="images/aparelho-4.png" alt="" loading="lazy" aria-hidden="true" />
         </div>
 
-        <div class="aparelho-step" data-step="3" data-img="images/aparelho-5.png">
+        <div class="aparelho-step" data-step="3" data-img="images/aparelho-5.png" style="--step-img: url('images/aparelho-5.png')">
           <div class="step-label">04</div>
           <h3>Ajustes personalizados</h3>
           <p>Cada aparelho é regulado conforme a necessidade auditiva, a rotina e o ambiente de vida do paciente. Os ajustes são feitos com acompanhamento profissional.</p>
@@ -553,9 +560,10 @@
             <span>Múltiplos programas</span>
             <span>Adaptação gradual</span>
           </div>
+          <img class="step-product-mobile" src="images/aparelho-5.png" alt="" loading="lazy" aria-hidden="true" />
         </div>
 
-        <div class="aparelho-step" data-step="4" data-img="images/aparelho-6.png">
+        <div class="aparelho-step" data-step="4" data-img="images/aparelho-6.png" style="--step-img: url('images/aparelho-6.png')">
           <div class="step-label">05</div>
           <h3>Acompanhamento na adaptação</h3>
           <p>O processo não termina na compra. A dB acompanha retornos, regulagens e adaptação para garantir que o aparelho funcione bem na vida real do paciente.</p>
@@ -564,6 +572,7 @@
             <span>Suporte WhatsApp</span>
             <span>Acompanhamento contínuo</span>
           </div>
+          <img class="step-product-mobile" src="images/aparelho-6.png" alt="" loading="lazy" aria-hidden="true" />
         </div>
 
         <div class="aparelhos-cta-wrap" data-animate="fade-up">
@@ -678,15 +687,6 @@
           <span>Sem fila, com hora marcada</span>
         </div>
 
-        <div class="dif-card" data-animate="fade-up" data-delay="240">
-          <div class="dif-card-icon" aria-hidden="true">
-            <!-- Ícone: local + remoto -->
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><rect x="9" y="14" width="6" height="7" rx="1"/></svg>
-          </div>
-          <strong>Presencial, remoto e domiciliar</strong>
-          <span>Onde for mais conveniente</span>
-        </div>
-
         <div class="dif-card" data-animate="fade-up" data-delay="300">
           <div class="dif-card-icon" aria-hidden="true">
             <!-- Ícone: escudo / acompanhamento -->
@@ -791,7 +791,7 @@
 <!-- ════════════════════════════════════════
      FAMILIARES
 ════════════════════════════════════════ -->
-<section class="section section-familia bg-dark" aria-labelledby="familia-heading" style="overflow:hidden">
+<section class="section section-familia bg-dark" aria-labelledby="familia-heading">
   <div class="container">
     <div class="familia-inner" data-animate="fade-up">
       <div class="familia-content">
@@ -866,7 +866,7 @@
             Vocês atendem somente presencialmente?
             <svg class="faq-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
-          <div class="faq-a" id="faq-4" hidden><p>Não. A clínica oferece atendimento presencial, remoto e domiciliar, conforme disponibilidade e necessidade do paciente.</p></div>
+          <div class="faq-a" id="faq-4" hidden><p>Por enquanto a clínica atende somente presencial em Belo Horizonte</p></div>
         </div>
 
         <div class="faq-item" role="listitem">
